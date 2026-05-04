@@ -35,16 +35,19 @@ function tempoCalc(tempoObjetivo) {
   horas %= 24;
 
   if (tempoFinal > 0){
-    return dias + " dias " + horas + " horas " + minutos + " minutos " + segundos + " segundos";
+    return [dias, horas, minutos, segundos];
   }
   else{
-    return "Prazo finalizado";
+    return [0,0,0,0];
   }
 }
 
 function updateCronometer() {
   for (let i = 0; i < contadores.length; i++) {
-    contadores[i].textContent = tempoCalc(tempos[i]);
+    document.getElementById("dias" + i).textContent = tempoCalc(tempos[i])[0];
+    document.getElementById("horas" + i).textContent = tempoCalc(tempos[i])[1];
+    document.getElementById("min" + i).textContent = tempoCalc(tempos[i])[2];
+    document.getElementById("seg" + i).textContent = tempoCalc(tempos[i])[3];
   }
 }
 
@@ -53,4 +56,4 @@ updateCronometer();
 setInterval(updateCronometer, 1000);
 }
 
-//startCronometer();
+startCronometer();
